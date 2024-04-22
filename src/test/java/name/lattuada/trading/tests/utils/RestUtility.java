@@ -1,4 +1,4 @@
-package name.lattuada.trading.tests;
+package name.lattuada.trading.tests.utils;
 
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -11,18 +11,18 @@ public final class RestUtility {
     private final String baseUrl;
     private final RestTemplate restTemplate;
 
-    protected RestUtility() {
+    public RestUtility() {
         this.baseUrl = "http://localhost:8080";
         headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         restTemplate = new RestTemplate();
     }
 
-    protected <T> T get(String uri, Class<T> valueType) {
+    public <T> T get(String uri, Class<T> valueType) {
         return restTemplate.getForObject(getUrl(uri), valueType);
     }
 
-    protected <T, B> T post(String uri, B body, Class<T> bodyType) {
+    public <T, B> T post(String uri, B body, Class<T> bodyType) {
         HttpEntity<B> httpEntity = new HttpEntity<>(body, headers);
         return restTemplate.postForObject(getUrl(uri), httpEntity, bodyType);
     }

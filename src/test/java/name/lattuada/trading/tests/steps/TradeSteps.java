@@ -1,4 +1,4 @@
-package name.lattuada.trading.tests;
+package name.lattuada.trading.tests.steps;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -9,6 +9,8 @@ import name.lattuada.trading.model.dto.OrderDTO;
 import name.lattuada.trading.model.dto.SecurityDTO;
 import name.lattuada.trading.model.dto.TradeDTO;
 import name.lattuada.trading.model.dto.UserDTO;
+import name.lattuada.trading.tests.CucumberTest;
+import name.lattuada.trading.tests.utils.RestUtility;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.slf4j.Logger;
