@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extentreports>
+    <configuration>
+        <!-- Report theme: standard, dark -->
+        <theme>dark</theme>
+
+        <!-- Document encoding: defaults to UTF-8 -->
+        <encoding>UTF-8</encoding>
+
+        <!-- Protocol for script and stylesheets: defaults to https -->
+        <protocol>https</protocol>
+
+        <!-- Title of the document -->
+        <documentTitle>HTML Extent</documentTitle>
+
+        <!-- Report name displayed at top-nav -->
+        <reportName>My App Test Report</reportName>
+
+        <!-- View report without internet -->
+        <offlineMode>false</offlineMode>
+
+        <!-- Settings to change component location -->
+        <testViewChartLocation>top</testViewChartLocation>
+        <chartVisibleOnOpen>true</chartVisibleOnOpen>
+        <enableTimeline>true</enableTimeline>
+
+        <!-- Settings to enable/disable views -->
+        <enableCategoryView>true</enableCategoryView>
+        <enableAuthorView>true</enableAuthorView>
+        <enableExceptionView>true</enableExceptionView>
+        <enableTestRunnerLogsView>true</enableTestRunnerLogsView>
+    </configuration>
+</extentreports>
