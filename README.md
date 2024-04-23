@@ -18,7 +18,7 @@ Execute in a shell
 
 ```shell
 git clone https://github.com/jinfengdu3/cucumber-api-testing.git
-cd trading
+cd code-challenge
 mvn -U clean verify -DskipTests
 ```
 
