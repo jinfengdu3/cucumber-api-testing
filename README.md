@@ -17,7 +17,7 @@ Maven (define the environment variable `M2_HOME` appropriately).
 Execute in a shell
 
 ```shell
-git clone https://github.com/aldialimucaj/trading.git
+git clone https://github.com/jinfengdu3/cucumber-api-testing.git
 cd trading
 mvn -U clean verify -DskipTests
 ```
@@ -67,7 +67,7 @@ Here the settings to access the H2 console (values referenced
 in [`application.properties`](src/main/resources/application.properties)):
 
 * JDBC URL: `jdbc:h2:mem:trading` (see entry `spring.datasource.url` )
-* Password: `password` (see entry `spring.datasource.password`)
+* Password: `PASSWORD` (see entry `spring.datasource.password`)
 
 ## Debugging
 
@@ -75,6 +75,11 @@ in [`application.properties`](src/main/resources/application.properties)):
   to `true` in file [`application.properties`](src/main/resources/application.properties).
 * H2 console is active by default. To turn it off, remove the entry `spring.h2.console.enabled`
   from [`application.properties`](src/main/resources/application.properties).
+
+## Test Report
+Two different plugins are used for report in order to demonstrate the variety of plugins. Please find the report in path below
+* Extent Report: code-challenge/test-output/Html/ExtentHtml.html
+* Cucumber Report: code_challange/code-challenge/target/cucumber-report.html
 
 ## API
 
