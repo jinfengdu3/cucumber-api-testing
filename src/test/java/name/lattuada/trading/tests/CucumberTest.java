@@ -12,6 +12,6 @@ import org.springframework.boot.test.context.SpringBootTest;
                 features = "src/test/resources/features",
                 glue = "name.lattuada.trading.tests")
 @CucumberContextConfiguration
-//@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
+// @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 public class CucumberTest {
 }
