@@ -42,6 +42,12 @@ Once you launched the main application (see the previous Chapter), you can test 
 mvn test
 ```
 
+You can run tests with specific tag (e.g., @smoke)
+
+```shell
+mvn test -Dcucumber.filter.tags="@smoke"
+```
+
 Note that here the whole application has been structured to have it first running
 (see the previous Chapter), then tested via Cucumber. In this way, you can eventually verify manually the database
 content.
@@ -57,6 +63,7 @@ mvn -U clean verify
 ```
 
 you can build and test directly the code.
+
 
 ## Verify database content
 
