@@ -15,9 +15,10 @@ public class Hook {
     @After
     public void afterEachScenario(Scenario scenario) {
         String logs = CucumberLogAppender.getLog();
+        String htmlReadyLog = logs.replace("\n", "<br>");
 
-        if (logs != null && !logs.isEmpty()) {
-            scenario.log(logs);
+        if (htmlReadyLog != null && !htmlReadyLog.isEmpty()) {
+            scenario.log(htmlReadyLog);
         } else {
             scenario.log("No logs found for this scenario");
         }
