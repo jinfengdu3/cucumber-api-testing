@@ -16,7 +16,6 @@ import org.apache.commons.lang3.RandomStringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.client.HttpClientErrorException;
-import org.springframework.web.client.RestClientException;
 
 import java.util.HashMap;
 import java.util.Locale;
@@ -25,7 +24,6 @@ import java.util.Map;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
 public class TradeSteps {
 
@@ -86,63 +84,37 @@ public class TradeSteps {
     }
 
     private void createUser(String userName) {
-        try {
-            UserDTO userDTO = new UserDTO();
-            userDTO.setUsername(userName);
-            userDTO.setPassword(RandomStringUtils.randomAlphanumeric(64));
-            UserDTO userReturned = restUtility.post("api/users", userDTO, UserDTO.class);
-            userMap.put(userName, userReturned);
-            logger.info("User created: {}", userReturned);
-        } catch (RestClientException e) {
-            logger.error("Failed to create user {}: RestClientException error {}", userName, e.getMessage());
-            fail("RestClientException error during user creation: " + e.getMessage());
-        } catch (Exception e) {
-            logger.error("Unexpected error when creating user {}: {}", userName, e.getMessage());
-            fail("Unexpected error during user creation: " + e.getMessage());
-        }
+        UserDTO userDTO = new UserDTO();
+        userDTO.setUsername(userName);
+        userDTO.setPassword(RandomStringUtils.randomAlphanumeric(64));
+        UserDTO userReturned = restUtility.post("api/users", userDTO, UserDTO.class);
+        userMap.put(userName, userReturned);
+        logger.info("User created: {}", userReturned);
     }
 
     private void createSecurity(String securityName) {
-        try {
-            SecurityDTO securityDTO = new SecurityDTO();
-            securityDTO.setName(securityName);
-            SecurityDTO securityReturned = restUtility.post("api/securities", securityDTO, SecurityDTO.class);
-            securityMap.put(securityName, securityReturned);
-            logger.info("Security created: {}", securityReturned);
-        } catch (RestClientException e) {
-            logger.error("Failed to create security {}: RestClientException error {}", securityName, e.getMessage());
-            fail("RestClientException error during security creation: " + e.getMessage());
-        } catch (Exception e) {
-            logger.error("Unexpected error when creating security {}: {}", securityName, e.getMessage());
-            fail("Unexpected error during security creation: " + e.getMessage());
-        }
+        SecurityDTO securityDTO = new SecurityDTO();
+        securityDTO.setName(securityName);
+        SecurityDTO securityReturned = restUtility.post("api/securities", securityDTO, SecurityDTO.class);
+        securityMap.put(securityName, securityReturned);
+        logger.info("Security created: {}", securityReturned);
     }
 
     private void createOrder(String userName, EOrderType orderType, String securityName, Double price, Long quantity) {
-        try {
-            OrderDTO orderDTO = new OrderDTO();
-            orderDTO.setUserId(userMap.get(userName).getId());
-            orderDTO.setSecurityId(securityMap.get(securityName).getId());
-            orderDTO.setType(orderType);
-            orderDTO.setPrice(price);
-            orderDTO.setQuantity(quantity);
+        OrderDTO orderDTO = new OrderDTO();
+        orderDTO.setUserId(userMap.get(userName).getId());
+        orderDTO.setSecurityId(securityMap.get(securityName).getId());
+        orderDTO.setType(orderType);
+        orderDTO.setPrice(price);
+        orderDTO.setQuantity(quantity);
 
-            OrderDTO orderReturned = restUtility.post("api/orders", orderDTO, OrderDTO.class);
-            if (orderType == EOrderType.BUY) {
-                buyOrder = orderReturned;
-            } else if (orderType == EOrderType.SELL) {
-                sellOrder = orderReturned;
-            }
-            logger.info("Order created: {}", orderReturned);
-        } catch (RestClientException e) {
-            logger.error("Failed to create order for user {}, type {}, on security {}: RestClientException error {}", userName, orderType,
-                    securityName, e.getMessage());
-            fail("RestClientException error during order creation: " + e.getMessage());
-        } catch (Exception e) {
-            logger.error("Unexpected error when creating order for user {}, type {}, on security {}: {}", userName,
-                    orderType, securityName, e.getMessage());
-            fail("Unexpected error during order creation: " + e.getMessage());
+        OrderDTO orderReturned = restUtility.post("api/orders", orderDTO, OrderDTO.class);
+        if (orderType == EOrderType.BUY) {
+            buyOrder = orderReturned;
+        } else if (orderType == EOrderType.SELL) {
+            sellOrder = orderReturned;
         }
+        logger.info("Order created: {}", orderReturned);
     }
 
 }
